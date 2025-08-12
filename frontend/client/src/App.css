@@ -625,7 +625,7 @@ fessional Discord-inspired Layout */
 
   /* Fix mobile message positioning - add top padding to prevent header overlap */
   .messages-container {
-    padding-top: 30px;
+    padding-top: 50px;
     /* Extra padding on mobile to prevent header overlap */
   }
 
