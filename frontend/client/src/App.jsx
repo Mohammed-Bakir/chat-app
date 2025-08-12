@@ -184,13 +184,14 @@ export default function App() {
   }
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
-
-    else if (e.key === 'Enter' && e.shiftKey) {
-      return
+    if (e.key === 'Enter') {
+      if (e.shiftKey) {
+        // Allow new line in message
+        return
+      } else {
+        e.preventDefault();
+        sendMessage();
+      }
     }
   };
 
