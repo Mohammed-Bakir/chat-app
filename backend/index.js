@@ -46,6 +46,29 @@ app.get('/api/test', (req, res) => {
     });
 });
 
+// Clean database endpoint (for development only)
+app.post('/api/admin/clean-database', async (req, res) => {
+    try {
+        // Clear all collections
+        await User.deleteMany({});
+        await Message.deleteMany({});
+
+        res.json({
+            success: true,
+            message: 'Chat database cleaned successfully!',
+            timestamp: new Date().toISOString(),
+            cleared: ['users', 'messages']
+        });
+    } catch (error) {
+        console.error('Error cleaning database:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error cleaning database',
+            error: error.message
+        });
+    }
+});
+
 // Get message history endpoint
 app.get('/api/messages', async (req, res) => {
     try {
