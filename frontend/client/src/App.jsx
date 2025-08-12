@@ -191,7 +191,11 @@ export default function App() {
 
     else if (e.key === 'Enter' && e.shiftKey) {
       e.preventDefault();
-      setMessage((prevMessage) => prevMessage + '\n');
+      const cursorPosition = textarea.selectionStart;
+      const textBefore = message.value.substring(0, cursorPosition);
+      const textAfter = message.value.substring(cursorPosition);
+      setMessage(textBefore + "\n" + textAfter)  // Insert a new line
+      message.selectionStart = message.selectionEnd = cursorPosition + 1; // Move cursor
     }
   };
 
