@@ -298,11 +298,11 @@ export default function App() {
               value={message}
               onChange={handleInputChange}
               placeholder="Message #general"
+              onKeyPress={handleKeyPress}
               disabled={connectionStatus !== 'connected'}
             />
             <button
               onClick={sendMessage}
-              onKeyPress={handleKeyPress}
               disabled={!message.trim() || connectionStatus !== 'connected'}
             >
               Send
