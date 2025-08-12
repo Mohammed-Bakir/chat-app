@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/api';
 
 export default function Login() {
     const [formData, setFormData] = useState({
@@ -13,7 +14,7 @@ export default function Login() {
 
     const testConnection = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/test');
+            const response = await axios.get(`${API_BASE_URL}/api/test`);
             console.log('Server test response:', response.data);
             alert(`Server Status: ${JSON.stringify(response.data, null, 2)}`);
         } catch (error) {
@@ -36,7 +37,7 @@ export default function Login() {
         setIsLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:5000/api/login', {
+            const response = await axios.post(`${API_BASE_URL}/api/login`, {
                 username: formData.username.trim(),
                 password: formData.password
             }, {

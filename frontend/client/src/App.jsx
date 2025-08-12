@@ -2,10 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import axios from 'axios';
+import { API_BASE_URL } from './config/api';
 import './App.css'
 
 // Initialize socket outside component to maintain single instance
-const socket = io('http://localhost:5000', {
+const socket = io(API_BASE_URL, {
   path: '/socket.io',
   withCredentials: true,
   transports: ['websocket', 'polling'],
@@ -161,7 +162,7 @@ export default function App() {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:5000/api/logout', {}, { withCredentials: true });
+      await axios.post(`${API_BASE_URL}/api/logout`, {}, { withCredentials: true });
       localStorage.removeItem('token');
       navigate('/login');
 

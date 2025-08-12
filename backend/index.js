@@ -15,7 +15,8 @@ dotenv.config();
 const app = express();
 
 // Database connection
-mongoose.connect('mongodb+srv://Mohammed:Moh-Bakir-123@mohammed-cluster.7yuqfka.mongodb.net/')
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://Mohammed:Moh-Bakir-123@mohammed-cluster.7yuqfka.mongodb.net/chatapp';
+mongoose.connect(MONGODB_URI)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => {
         console.error('MongoDB connection error details:');
@@ -28,7 +29,9 @@ mongoose.connect('mongodb+srv://Mohammed:Moh-Bakir-123@mohammed-cluster.7yuqfka.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
-    origin: 'http://localhost:5174',
+    origin: process.env.NODE_ENV === 'production'
+        ? ['https://chat-app-frontend.vercel.app', 'https://chat-app-frontend-*.vercel.app']
+        : ['http://localhost:5174'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     exposedHeaders: ['set-cookie']
@@ -75,7 +78,9 @@ const server = createServer(app);
 // Socket.IO setup
 const io = new Server(server, {
     cors: {
-        origin: 'http://localhost:5174',
+        origin: process.env.NODE_ENV === 'production'
+            ? ['https://chat-app-frontend.vercel.app', 'https://chat-app-frontend-*.vercel.app']
+            : ['http://localhost:5174'],
         methods: ['GET', 'POST'],
         credentials: true
     },
@@ -209,6 +214,8 @@ io.on('connection', async (socket) => {
 });
 
 // Start server
-server.listen(5000, '0.0.0.0', () => {
-    console.log('Server running on http://localhost:5000');
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Chat App API running on port ${PORT}`);
+    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
 });

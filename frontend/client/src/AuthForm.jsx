@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { API_BASE_URL } from './config/api';
 import { useNavigate } from 'react-router-dom';
 
 function AuthForm({ type }) {
@@ -8,7 +9,7 @@ function AuthForm({ type }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch(`http://localhost:5000/${type}`, {
+        const res = await fetch(`${API_BASE_URL}/${type}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password }),
