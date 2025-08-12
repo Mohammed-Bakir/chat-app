@@ -302,6 +302,7 @@ export default function App() {
             />
             <button
               onClick={sendMessage}
+              onKeyPress={handleKeyPress}
               disabled={!message.trim() || connectionStatus !== 'connected'}
             >
               Send
