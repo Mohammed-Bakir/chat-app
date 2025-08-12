@@ -304,7 +304,7 @@ export default function App() {
           </div>
 
           <div className="message-input">
-            <textarea
+            <input
               type="text"
               value={message}
               onChange={handleInputChange}
