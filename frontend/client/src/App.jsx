@@ -188,6 +188,11 @@ export default function App() {
       e.preventDefault();
       sendMessage();
     }
+
+    else if (e.key === 'Enter' && e.shiftKey) {
+      e.preventDefault();
+      setMessage((prevMessage) => prevMessage + '\n');
+    }
   };
 
   const handleInputChange = (e) => {
