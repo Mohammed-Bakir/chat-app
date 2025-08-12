@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
     origin: process.env.NODE_ENV === 'production'
-        ? ['https://chat-app-frontend.vercel.app', 'https://chat-app-frontend-*.vercel.app']
+        ? ['https://chat-app-ochre-chi.vercel.app']
         : ['http://localhost:5174'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -79,7 +79,7 @@ const server = createServer(app);
 const io = new Server(server, {
     cors: {
         origin: process.env.NODE_ENV === 'production'
-            ? ['https://chat-app-frontend.vercel.app', 'https://chat-app-frontend-*.vercel.app']
+            ? ['https://chat-app-ochre-chi.vercel.app']
             : ['http://localhost:5174'],
         methods: ['GET', 'POST'],
         credentials: true
