@@ -1,0 +1,17 @@
+{
+    "name": "chat-app",
+    "version": "1.0.0",
+    "description": "Real-time chat application",
+    "scripts": {
+        "start": "cd backend && npm start",
+        "install-backend": "cd backend && npm install",
+        "dev": "cd backend && npm run dev"
+    },
+    "keywords": [
+        "chat",
+        "real-time",
+        "socket.io"
+    ],
+    "author": "",
+    "license": "ISC"
+}
