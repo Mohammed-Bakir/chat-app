@@ -622,6 +622,37 @@ fessional Discord-inspired Layout */
   .online-count {
     font-size: 10px;
   }
+
+  /* Fix mobile message positioning - add top padding to prevent header overlap */
+  .messages-container {
+    padding-top: 30px;
+    /* Extra padding on mobile to prevent header overlap */
+  }
+
+  /* Ensure header has proper height on mobile */
+  .chat-header {
+    padding: 12px 16px;
+    /* Slightly smaller padding on mobile */
+    min-height: 60px;
+    /* Ensure consistent header height */
+  }
+
+  /* Adjust message input for mobile */
+  .message-input {
+    padding: 16px;
+    /* Smaller padding on mobile */
+  }
+
+  .message-input input {
+    font-size: 16px;
+    /* Prevent zoom on iOS */
+    padding: 12px 16px;
+  }
+
+  .message-input button {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
 }
 
 /* Professional Animations */
