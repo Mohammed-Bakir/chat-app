@@ -15,7 +15,7 @@ dotenv.config();
 const app = express();
 
 // Database connection
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://Mohammed:Moh-Bakir-123@mohammed-cluster.7yuqfka.mongodb.net/chatapp';
+const MONGODB_URI = process.env.MONGODB_URI;
 mongoose.connect(MONGODB_URI)
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => {
