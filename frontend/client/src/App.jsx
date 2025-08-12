@@ -190,12 +190,7 @@ export default function App() {
     }
 
     else if (e.key === 'Enter' && e.shiftKey) {
-      e.preventDefault();
-      const cursorPosition = textarea.selectionStart;
-      const textBefore = message.value.substring(0, cursorPosition);
-      const textAfter = message.value.substring(cursorPosition);
-      setMessage(textBefore + "\n" + textAfter)  // Insert a new line
-      message.selectionStart = message.selectionEnd = cursorPosition + 1; // Move cursor
+      return
     }
   };
 
@@ -307,7 +302,7 @@ export default function App() {
               value={message}
               onChange={handleInputChange}
               placeholder="Message #general"
-              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyPress}
               disabled={connectionStatus !== 'connected'}
             />
             <button
