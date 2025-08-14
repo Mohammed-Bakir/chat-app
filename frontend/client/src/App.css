@@ -632,12 +632,29 @@ fessional Discord-inspired Layout */
   .messages-container {
     padding-top: 50px;
     /* Extra padding on mobile to prevent header overlap */
-    height: calc(100vh - 140px);
-    /* Ensure proper height on mobile */
+    height: calc(100vh - 180px);
+    /* Account for header + input + extra space on mobile */
+    max-height: calc(100vh - 180px);
     overflow-y: auto;
     /* Force scrolling */
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     /* Smooth scrolling on iOS */
+  }
+
+  /* Fix the main chat layout on mobile */
+  .chat-main {
+    height: calc(100vh - 80px);
+    /* Account for header height */
+    overflow: hidden;
+  }
+
+  /* Ensure messages section takes proper height */
+  .messages-section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   /* Ensure header has proper height on mobile */
