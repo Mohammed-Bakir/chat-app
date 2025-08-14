@@ -26,6 +26,7 @@ export default function App() {
   const [isTyping, setIsTyping] = useState(false);
   const navigate = useNavigate();
   const messagesEndRef = useRef(null);
+  const textareaRef = useRef(null);
 
 
   // Scroll to bottom when messages update
@@ -146,6 +147,12 @@ export default function App() {
     try {
       socket.emit('message', message);
       setMessage('');
+
+      // Reset textarea height after sending
+      if (textareaRef.current) {
+        textareaRef.current.style.height = 'auto';
+        textareaRef.current.style.height = '48px'; // Reset to minimum height
+      }
     } catch (err) {
       setError('Failed to send message');
       console.error('Send message error:', err);
@@ -306,6 +313,7 @@ export default function App() {
 
           <div className="message-input">
             <textarea
+              ref={textareaRef}
               value={message}
               onChange={handleInputChange}
               placeholder="Message #general"
