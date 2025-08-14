@@ -273,7 +273,12 @@ export default function App() {
                     <span className="message-timestamp">{formatTime(new Date(msg.timestamp))}</span>
                   </div>
                   <div className="message-content">
-                    {msg.text}
+                    {msg.text.split('\n').map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index < msg.text.split('\n').length - 1 && <br />}
+                      </span>
+                    ))}
                   </div>
                 </div>
               ))
