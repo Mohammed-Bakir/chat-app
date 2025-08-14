@@ -189,20 +189,16 @@ export default function App() {
         e.preventDefault();
         sendMessage();
       }
-      else {
-        setMessage(message + '\n');
-      }
-    }
-
-    if (e.shiftKey) {
-      if (e.key === 'Enter') {
-        return
-      }
     }
   };
 
   const handleInputChange = (e) => {
     setMessage(e.target.value);
+
+    // Auto-resize textarea
+    const textarea = e.target;
+    textarea.style.height = 'auto';
+    textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px'; // Max height of 120px
 
     // Handle typing indicators
     if (!isTyping && e.target.value.trim()) {
@@ -304,13 +300,14 @@ export default function App() {
           </div>
 
           <div className="message-input">
-            <input
-              type="text"
+            <textarea
               value={message}
               onChange={handleInputChange}
               placeholder="Message #general"
               onKeyDown={handleKeyPress}
               disabled={connectionStatus !== 'connected'}
+              rows={1}
+              style={{ resize: 'none', overflow: 'hidden' }}
             />
             <button
               onClick={sendMessage}
