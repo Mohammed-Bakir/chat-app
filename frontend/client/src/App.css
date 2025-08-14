@@ -628,10 +628,16 @@ fessional Discord-inspired Layout */
     font-size: 10px;
   }
 
-  /* Fix mobile message positioning - add top padding to prevent header overlap */
+  /* Fix mobile message positioning and scrolling */
   .messages-container {
     padding-top: 50px;
     /* Extra padding on mobile to prevent header overlap */
+    height: calc(100vh - 140px);
+    /* Ensure proper height on mobile */
+    overflow-y: auto;
+    /* Force scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
   }
 
   /* Ensure header has proper height on mobile */
